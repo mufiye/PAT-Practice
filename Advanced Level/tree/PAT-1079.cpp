@@ -16,7 +16,7 @@ vector<int> recordLeaf;//记录叶子节点的下标
 
 int main(){
     int N;
-    float p,r;
+    double p,r;
     cin>>N>>p>>r;
     vector<vector<int>> tree(N);//记录树的结构
     //读取输入，记录树的结构以及叶子节点的相关信息
@@ -57,7 +57,7 @@ int main(){
     }
     
     //最后计算钱
-    float ans = 0.0;
+    double ans = 0.0;
     for(int i=0;i<recordLeaf.size();i++){
         int leafId = recordLeaf[i];
         ans += recordNum1[leafId] * p * pow((1+r*0.01),recordNum2[leafId]);
