@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#include<math.h>
+#include<cmath>
 #include<iomanip>
 #define max_size 100000
 
@@ -13,7 +13,7 @@ struct Node{
 
 int main(){
     int N;
-    float p,r;
+    double p,r;
     cin>>N>>p>>r;
     
     //读取树结构
@@ -29,30 +29,20 @@ int main(){
     
     queue<Node*> q;
     q.push(&nodes[root]);
-    int level=-1;
-    vector<int> nums;
+    int level=-1, number;
+    
     while (!q.empty()) {
         level++;
-        int number = 0;
+        number = q.size();
         for(int i = 0, l = (int)q.size(); i < l; i++){
             Node* cur = q.front();
             for(auto lt : cur->children){
                     q.push(lt);
-                    number++;
             }
             q.pop();
         }
-        nums.push_back(number);
     }
-    float maxPrice = p * pow((1+r*0.01),level);
-    int number;
-    for(int i=nums.size()-1;i>=0;i--){
-        if(nums[i]!=0){
-            number = nums[i];
-            break;
-        }
-    }
-    printf("%.2lf",maxPrice);
-    printf(" %d\n",number);
+    double maxPrice = p * pow((1+r*0.01),level);
+    printf("%.2lf %d\n",maxPrice,number);
     return 0;
 }
