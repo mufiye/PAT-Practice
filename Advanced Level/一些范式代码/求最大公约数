@@ -1,0 +1,9 @@
+int gcd(int a, int b){
+    if(b == 0)  return a;
+    else  return gcd(b, a%b);
+}
+
+//或者
+int gcb(int a, int b){
+    return !b ? a : gcd(b, a%b);
+}
