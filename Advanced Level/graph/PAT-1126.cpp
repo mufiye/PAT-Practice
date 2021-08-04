@@ -1,3 +1,5 @@
+//判断欧拉图，注意要判断连通性
+//Q: 度为0和连通性的关系是什么？
 #include<iostream>
 #include<vector>
 #define max_size 501
