@@ -53,3 +53,12 @@ void insert(int x){
     heap[++n] = x;
     upAdjust(1,n);
 }
+
+//堆排序
+void heapSort(){
+    createHeap(); //建堆
+    for(int i=n; i>1; i--){ //倒着枚举, 直到堆中只有一个元素
+        swap(heap[i], heap[1]);
+        downAdjust(1, i-1);
+    }
+}
