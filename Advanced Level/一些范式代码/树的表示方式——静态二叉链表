@@ -62,3 +62,5 @@ void LayerOrder(int root){
         if(nodes[now].rchild != -1)  q.push(nodes[now].rchild);
     }
 }
+
+//PS: 如果是普通的二叉树的话，一般用不到插入这个函数
