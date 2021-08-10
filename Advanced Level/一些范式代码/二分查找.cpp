@@ -14,7 +14,7 @@ int binarySearch(int A[], int left, int right, int x){
     return -1;
 }
 
-//如何求序列中第一个大于等于x的元素的位置
+//如何求序列中第一个大于等于x的元素的位置,注意假设一共有n个数,则[left,right]为[0,n]
 int lower_bound(int A[], int left, int right){
     int mid;
     while(left < right){
@@ -25,7 +25,7 @@ int lower_bound(int A[], int left, int right){
     return left;
 }
 
-//如何求序列中第一个大于x的元素的位置
+//如何求序列中第一个大于x的元素的位置,注意假设一共有n个数,则[left,right]为[0,n]
 int upper_bound(int A[], int left, int right){
     int mid;
     while(left < right){
