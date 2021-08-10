@@ -35,3 +35,6 @@ int upper_bound(int A[], int left, int right){
     }
     return left;
 }
+
+//标准库中upper_bound函数和lower_bound函数的使用
+//lower_bound(A.begin(), A.end(), number);
