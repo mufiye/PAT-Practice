@@ -5,10 +5,14 @@
 
 using namespace std;
 
-typedef struct Node{
+struct Node{
     int id, layer;
     vector<Node*> children;
-} Node;
+    Node(int a, int b){
+        this->id = a;
+        this->layer = b;
+    }
+};
 
 Node* root;
 stack<Node*> stk;
@@ -38,9 +42,8 @@ void dfs(Node* node, int target){
 
 int main(){
     cin>>N;
-    root = new Node;
-    root->id = 0;
-    root->layer = 0;
+    getchar();
+    root = new Node(0,0);
     stk.push(root);
     nodes.insert(0);
     getline(cin, str);
@@ -56,9 +59,7 @@ int main(){
             stk.push(stk.top()->children.back());
         }
         nodes.insert(id);
-        Node *node = new Node;
-        node->layer = j;
-        node->id = id;
+        Node *node = new Node(id,j);
         stk.top()->children.push_back(node);
     }
     cin>>K;
