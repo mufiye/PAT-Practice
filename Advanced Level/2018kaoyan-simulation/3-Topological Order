@@ -1,0 +1,49 @@
+//判断是否为拓扑排序
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int N,M,K;
+vector<int> graph[1010];
+int inDegree[1010];
+vector<int> res;
+
+int main(){
+    fill(inDegree, inDegree+1010, 0);
+    cin>>N>>M;
+    for(int i=0; i<M; i++){
+        int v1, v2;
+        cin>>v1>>v2;
+        graph[v1].push_back(v2);
+        inDegree[v2]++;
+    }
+    cin>>K;
+    for(int i=0; i<K; i++){
+        vector<int> vec;
+        int tempIn[N+1];
+        bool isTopo = true;
+        for(int j=1; j<=N; j++)  tempIn[j] = inDegree[j];
+        for(int j=0; j<N; j++){
+            int v;
+            cin>>v;
+            vec.push_back(v);
+        }
+        for(int j=0; j<N; j++){
+            if(tempIn[vec[j]] != 0){
+                isTopo = false;
+                break;
+            }
+            else{
+                for(int k=0; k<graph[vec[j]].size(); k++){
+                    tempIn[graph[vec[j]][k]]--;
+                }
+            }
+        }
+        if(!isTopo)  res.push_back(i);
+    }
+    for(int i=0;i<res.size();i++){
+        if(i!=0)  cout<<" "<<res[i];
+        else  cout<<res[i];
+    }
+    return 0;
+}
