@@ -1,0 +1,50 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+int M,N;
+vector<int> res;
+bool minHeap = false, maxHeap = false;
+
+void postTra(vector<int> &tree, int rootIndex){
+    int left = rootIndex*2, right = rootIndex*2+1;
+    if(left < tree.size()){
+        if(tree[rootIndex] > tree[left])  maxHeap = true;
+        else  if(tree[rootIndex] < tree[left])  minHeap = true;
+        else{
+            maxHeap = minHeap = true;
+        }
+        postTra(tree, left);
+    }
+    if(right < tree.size()){
+        if(tree[rootIndex] > tree[right])  maxHeap = true;
+        else  if(tree[rootIndex] < tree[right])  minHeap = true;
+        else{
+            maxHeap = minHeap = true;
+        }
+        postTra(tree, right);
+    }
+    res.push_back(tree[rootIndex]);
+    return;
+}
+
+int main(){
+    cin>>M>>N;
+    for(int i=0; i<M; i++){
+        vector<int> tree(N+1);
+        minHeap = false, maxHeap = false;
+        res.clear();
+        for(int j=1; j<=N; j++)  cin>>tree[j];
+        postTra(tree, 1);
+        if(minHeap && maxHeap)  cout<<"Not Heap"<<endl;
+        else if(minHeap)  cout<<"Min Heap"<<endl;
+        else  cout<<"Max Heap"<<endl;
+        for(int i=0;i<res.size();i++){
+            if(i != 0)  cout<<" "<<res[i];
+            else  cout<<res[i];
+        }
+        cout<<endl;
+    }
+    return 0;
+}
