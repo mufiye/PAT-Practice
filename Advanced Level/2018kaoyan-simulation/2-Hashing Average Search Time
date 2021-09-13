@@ -1,0 +1,47 @@
+#include<iostream>
+
+using namespace std;
+
+bool isPrime(int number){
+    if(number == 1)  return false;
+    if(number == 2)  return true;
+    for(int i=2; i*i<=number; i++){
+        if(number % i == 0)  return false;
+    }
+    return true;
+}
+
+int main(){
+    int mSize, N, M, cnt = 0;
+    cin>>mSize>>N>>M;
+    while(!isPrime(mSize))  mSize++;
+    int arr[mSize];
+    fill(arr, arr+mSize, -1);
+    for(int i=0; i<N; i++){
+        int number,index;
+        bool isInsert = false;
+        cin>>number;
+        for(int j=0; j<mSize; j++){
+            index = (number+j*j)%mSize;
+            if(arr[index] == -1){
+                isInsert = true;
+                arr[index] = number;
+                break;
+            }
+        }
+        if(!isInsert)  cout<<number<<" cannot be inserted."<<endl;
+    }
+    for(int i=0; i<M; i++){
+        int number,index;
+        cin>>number;
+        for(int j=0; j<=mSize; j++){
+            index = (number+j*j)%mSize;
+            cnt++;
+            if(arr[index] == number || arr[index] == -1){
+                break;
+            }
+        }
+    }
+    double ans = cnt*1.0/M;
+    printf("%.1f", ans);
+}
